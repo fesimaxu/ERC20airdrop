@@ -13,7 +13,7 @@ contract ERC20Airdrop is ERC20, Ownable {
  
 
     constructor() ERC20("evmToken", "EMT") { 
-
+        _mint(msg.sender, 1000000e18);
     }
 
      function mint(address _to, uint256 amount) external {

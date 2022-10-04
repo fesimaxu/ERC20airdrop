@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 
 
 
-contract ERC20Disbuser is Ownable {
+contract ERC20AirdropDisbuser is Ownable {
     
     bytes32 merkleRoot;
     ERC20Airdrop reward;
