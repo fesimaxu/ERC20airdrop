@@ -29,10 +29,10 @@ async function main() {
   const erc20airdropDisbuser = await ERC20AirdropDisbuser.deploy(erc20Airdrop.address,"0x7acbd35877b1fb1bb1b44ce1190be0dcd824e6e2ef255f89ba1251ebecad0b9d");
   await erc20airdropDisbuser.deployed();
   console.log(`Whitelist Address ${erc20airdropDisbuser.address}`);
-  const interact = await ethers.getContractAt("Whitelist", erc20airdropDisbuser.address);
+  const interact = await ethers.getContractAt("ERC20AirdropDisbuser", erc20airdropDisbuser.address);
 
 
-  console.log("SENDING TOKEN TO AIRDROP CONTRACT");
+  console.log("SENDING TOKEN TO AIRDROP CONTRACT", interact);
   await erc20Airdrop.transfer(erc20airdropDisbuser.address, ethers.utils.parseEther("2000"));
 
   const proof = proofs[whitelistAddr1].proof;
