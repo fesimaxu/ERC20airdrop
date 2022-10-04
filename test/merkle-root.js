@@ -40,7 +40,7 @@ describe("Check if merkle root is working", function () {
 
     // Deploy the Whitelist contract
     const ERC20AirdropDisbuser = await ethers.getContractFactory("ERC20AirdropDisbuser");
-    const Whitelist = await ERC20AirdropDisbuser.deploy(root);
+    const Whitelist = await ERC20AirdropDisbuser.deploy(root,ethers.utils.parseEther("20"));
     await Whitelist.deployed();
 
     // Compute the Merkle Proof of the owner address (0'th item in list)

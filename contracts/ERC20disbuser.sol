@@ -17,13 +17,14 @@ contract ERC20AirdropDisbuser is Ownable {
 
     constructor(ERC20Airdrop _reward, bytes32 _merkleroot) {
 
-        reward = _reward;
         merkleRoot = _merkleroot;
+        reward = _reward;
+        
         
     }
 
 
-    function _verifyClaim(bytes32[] memory _merkleProof, uint256 _airDrop)private view returns (bool){
+    function checkInWhitelist(bytes32[] memory _merkleProof, uint256 _airDrop)private view returns (bool){
 
         bytes32 leaf = keccak256(abi.encodePacked(msg.sender, _airDrop));
 
@@ -35,7 +36,7 @@ contract ERC20AirdropDisbuser is Ownable {
 
 
     function claim(bytes32[] calldata proof, uint256 airdrop) public {
-        require(_verifyClaim(proof, airdrop), "You are not in the whitelist");
+        require(checkInWhitelist(proof, airdrop), "You are not in the whitelist");
         require(holders[msg.sender] == false, "You have already claimed");
         holders[msg.sender] = true;
         ERC20Airdrop(reward).transfer(payable(msg.sender), airdrop);
